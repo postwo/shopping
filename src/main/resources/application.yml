@@ -4,3 +4,31 @@ server:
 spring:
   application:
     name: spring-shop
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/shopping?serverTimezone=Asia/Seoul
+    username: shop
+    password: cos1234
+
+  #jpa 설정
+  jpa:
+    open-in-view: true
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy #카멜표기를 스테이크 표기로 변환
+    show-sql: true # sql 구문 보이기
+    properties:
+      hibernate:
+        format_sql: true #포멧 처리해서 보이기
+    database-platform: org.hibernate.dialect.MySQL8Dialect #Mysql8 버전 사용
+
+  # loggin
+logging:
+  level:
+    org:
+      hibernate:
+        type:
+          descriptor:
+            sql: trace
