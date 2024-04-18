@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--xmlns:th="http://www.thymeleaf.org" 이걸 써줘야 thymelef가 적용된다 -->
+<head>
+    <meta charset="UTF-8">
+    <title>ex2</title>
+</head>
+<body>
+<h1>ex2 페이지</h1>
+
+<div>
+    <a th:href="@{/thymleaf/ex1}">Ex1</a> <!-- 공백 조심하기 -->
+</div>
+
+<div>
+    <a th:href="@{https://www.google.com/}">Google</a> <!-- 공백 조심하기 -->
+</div>
+
+<div>
+    <a th:href="@{/thymleaf/ex3(name='홍길동',age=20)}">매개변수 전달</a> <!-- 공백 조심하기 -->
+</div>
+
+</body>
+</html>

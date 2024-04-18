@@ -23,9 +23,9 @@ public class ThymleafController {
         return "thymeleaf/ex1";
     }
 
-//    @GetMapping("/thymleaf/ex1")
-//    public String ex1(){
-//        return "thymeleaf/ex1";
-//    }
+    @GetMapping("/thymleaf/ex2")
+    public String ex2(){
+        return "thymeleaf/ex2";
+    }
 
 }
