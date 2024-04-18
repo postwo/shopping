@@ -1,7 +1,14 @@
 package intc.spring.shop.repository;
 
+import com.querydsl.core.Tuple;
+import com.querydsl.jpa.impl.JPAQuery;
+import com.querydsl.jpa.impl.JPAQueryFactory;
 import intc.spring.shop.constant.ItemSellStatus;
 import intc.spring.shop.entity.Item;
+import intc.spring.shop.entity.QItem;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.condition.DisabledOnOs;
@@ -12,6 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import static intc.spring.shop.entity.QItem.item;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -22,6 +30,8 @@ class ItemRepositoryTest {
     @Autowired
     private ItemRepository itemRepository;
 
+    @PersistenceContext
+    private EntityManager em;
 
     @DisplayName("상품생성 테스트 ")
     @Test
@@ -117,4 +127,34 @@ class ItemRepositoryTest {
         createitemList();
         itemRepository.findByDetailNative("1").forEach(System.out::println);
     }
+
+
+
+    @DisplayName("querydsl 테스트")
+    @Test
+    void querydslTest() {
+        createitemList();
+        JPAQueryFactory query = new JPAQueryFactory(em);
+        QItem qItem = item;
+
+        //ctrl+alt+v 하면 변수 자동생성
+        //JPAQuery<Tuple> result = query.select().from().where().orderBy();
+        //List<Tuple> fetch =result.fetch();
+
+        //두개다 합친거
+        //List<Tuple> result = query.select().from().where().orderBy().fetch();
+
+
+        List<Item> itemList = query.selectFrom(item)
+                .where(item.itemSellStatus.eq(ItemSellStatus.SELL))// 셀스테이터스에서 판매상태인 녀석이 있냐
+                .where(item.itemDetail.like("%" + "1" + "%")) //내가 갖고 있는것중에 1글자가 들어있는걸 가지고 온다
+                .orderBy(item.price.desc())
+                .fetch();
+
+        //itemList.forEach(System.out::println); //밑에거하고 같은 뜻임
+        itemList.forEach((item)-> System.out.println(item));
+    }
+
+
+    
 }
