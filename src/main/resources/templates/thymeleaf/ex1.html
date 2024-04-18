@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"> <!--xmlns:th="http://www.thymeleaf.org" 이걸 써줘야 thymelef가 적용된다 -->
 <head>
     <meta charset="UTF-8">
     <title>ex1</title>
 </head>
 <body>
-<h1>EX1 페이지 입니다</h1>
+<h1>EX1 페이지 2입니다</h1>
+<P th:text="${data}">스프링 부트</P>
 </body>
 </html>
