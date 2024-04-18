@@ -1,4 +1,4 @@
-package intc.spring.shop;
+package intc.spring.shop.controller;
 
 import intc.spring.shop.dto.UserDto;
 import org.springframework.stereotype.Controller;

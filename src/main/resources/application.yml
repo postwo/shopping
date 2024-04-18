@@ -5,6 +5,19 @@ spring:
   application:
     name: spring-shop
 
+  devtools:
+    restart:
+      enabled: true #리스타트를 할 수 있게 하겠다라는 뜻이다
+
+    livereload:
+      enabled: true
+
+  thymeleaf:
+    cache: false # 캐시를 하지 않겠다
+
+
+
+  # mysql
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/shopping?serverTimezone=Asia/Seoul

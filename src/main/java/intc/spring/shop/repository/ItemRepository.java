@@ -3,11 +3,12 @@ package intc.spring.shop.repository;
 import intc.spring.shop.entity.Item;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface ItemRepository extends JpaRepository<Item,Long> {
+public interface ItemRepository extends JpaRepository<Item,Long> , QuerydslPredicateExecutor<Item> {
 
     //실행하는 결과가 list이다
     List<Item> findByItemNm(String itemNm); //검색하면 한개가 나올수도 있고 여러개가 나올수도 있기 때문에 list사용
