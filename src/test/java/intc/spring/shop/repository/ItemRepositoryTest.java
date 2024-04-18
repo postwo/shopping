@@ -110,4 +110,11 @@ class ItemRepositoryTest {
         createitemList();
         itemRepository.findByDetail("1").forEach(System.out::println);
     }
+
+    @DisplayName("native 테스트")
+    @Test
+    void findByDetailNativeTest() {
+        createitemList();
+        itemRepository.findByDetailNative("1").forEach(System.out::println);
+    }
 }
