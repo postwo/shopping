@@ -45,6 +45,10 @@ public class ThymleafController {
     }
 
 
+    @GetMapping("/ex4")
+    public String ex4(){
 
+        return "thymeleaf/ex4";
+    }
 
 }

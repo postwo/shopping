@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>shop</title>
+
+    <!-- js,css 공통파일-->
+
+    <th:block layout:fragment="script"></th:block>
+    <th:block layout:fragment="css"></th:block>
+</head>
+<body>
+    <div th:replace="~{fragments/header::header}"></div> <!-- 헤더 경로를 가지고 와서넣어준다 --> <!--header::header 이거는 header.html에서 이걸<div th:fragment="header"> 불러온다는 뜻이다-->
+    <div layout:fragment="content">
+
+    </div>
+    <div th:replace="~{fragments/footer::footer}"></div>
+</body>
+</html>
