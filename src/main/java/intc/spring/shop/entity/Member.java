@@ -33,7 +33,7 @@ public class Member {
     private Role role;
 
 
-    //MemberDto를 Memberentity로 변경 
+    //MemberDto를 Memberentity로 변경
     //dto에서 정보를가지고 와서 entity에 set해준거다
     public static Member createMember(MemberDto dto, PasswordEncoder passwordEncoder){
         return Member.builder()
