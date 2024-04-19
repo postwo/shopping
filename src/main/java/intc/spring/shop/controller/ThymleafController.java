@@ -15,7 +15,7 @@ import java.awt.*;
 
 @Controller
 @Slf4j //log
-@RequestMapping("/thymleaf")
+@RequestMapping("/thymeleaf")
 public class ThymleafController {
 
     @GetMapping("/ex1")
@@ -45,10 +45,10 @@ public class ThymleafController {
     }
 
 
-    @GetMapping("/ex4")
-    public String ex4(){
-
-        return "thymeleaf/ex4";
-    }
+//    @GetMapping("/ex4")
+//    public String ex4(){
+//
+//        return "thymeleaf/ex4";
+//    }
 
 }

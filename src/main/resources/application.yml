@@ -16,6 +16,11 @@ spring:
     cache: false # 캐시를 하지 않겠다
 
 
+# 시큐리티 임시적으로 사용할 아이디 비번 설정
+  security:
+    user:
+      name: co
+      password: 12
 
   # mysql
   datasource:
@@ -45,3 +50,4 @@ logging:
         type:
           descriptor:
             sql: trace
+
