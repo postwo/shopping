@@ -13,6 +13,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @EnableWebSecurity //웹 시큐리티를 쓸수있도록 하겠다는거다
 public class SecurityConfig {
 
+    /*BCryptPasswordEncoder 이걸로 하든 PasswordEncoder를 하든 똑같이 암호화 된다*/
     @Bean
     BCryptPasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
@@ -20,6 +21,8 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
+
+
         http
                 .formLogin(Customizer.withDefaults()) //로그인 페이지 이동
                 .logout(Customizer.withDefaults()); // 로그아웃

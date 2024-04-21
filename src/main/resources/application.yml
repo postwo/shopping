@@ -33,7 +33,7 @@ spring:
   jpa:
     open-in-view: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
       naming:
         physical-strategy: org.hibernate.boot.model.naming.CamelCaseToUnderscoresNamingStrategy #카멜표기를 스테이크 표기로 변환
     show-sql: true # sql 구문 보이기
