@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -67,7 +68,10 @@ public class MemberController {
     //로그아웃
     @GetMapping("/member/logout")
     public String logoutForm(HttpServletRequest request, HttpServletResponse response){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();//인증된정보를 들고온다
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();//인증된정보를 들고온다 =로그인이 되어있으면 그정보를 authentication에 담아준다
+        if (authentication != null){ //로그인을 했을수도 안했을수도 있기 때문에
+            new SecurityContextLogoutHandler().logout(request,response,authentication);
+        }
         return "redirect:/";
     }
 
