@@ -23,9 +23,28 @@ public class SecurityConfig {
     SecurityFilterChain filterChain(HttpSecurity http)throws Exception{
 
 
+//        http  이거는 시작할때만 이렇게 사용
+//                .formLogin(Customizer.withDefaults()) //로그인 페이지 이동
+//                .logout(Customizer.withDefaults()); // 로그아웃
+
         http
-                .formLogin(Customizer.withDefaults()) //로그인 페이지 이동
-                .logout(Customizer.withDefaults()); // 로그아웃
+                .formLogin(form ->form  //form 매개변수를 만들어서 그매개 변수 받은거를 이용해서
+                        .loginPage("/member/login") //로그인이 걸리는 것들은 전부다 login페이지로 이동
+                        .defaultSuccessUrl("/")// 정상이면 루트로 이동
+                        .failureUrl("/member/login/error") //로그인 실패시 이동할 페이지
+                        .usernameParameter("email") //로그인부분 서비스단에서 loadUserByUsername 이렇게 다 username만 받는데 이거를 config에서 username을 email로 변경해주면 로그인이된다
+                       // .passwordParameter("password") // 여기도 password를 안쓰고 pw라고 쓰는 사람이 있기 때문에 이렇게 예시로 써둔다
+                        .permitAll() );// 모든사람들이 쓸수 있다
+
+
+        http.logout(Customizer.withDefaults());
+
+
+        http
+                .authorizeHttpRequests(request-> request
+                        .requestMatchers("/css/**").permitAll() // 이렇게 해서 권한을 열어줘야  css가 먹는다
+                        .requestMatchers("/","/member/**").permitAll() //접근하게 만들거
+                        .anyRequest().authenticated());//인증을 걸거다 //위에 권한을 열어준거 빼고는 전부다 로그인 페이지로 이동
 
         return http.build();
 
