@@ -13,13 +13,13 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item" sec:authorize="isAuthenticated()"> <!--isAuthenticated() 로그인을 해야만 목록 생김 -->
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')"><!--인증 여부 확인 접속 가능 -->
                         <a class="nav-link active" aria-current="page" href="/admin/item/new">상품등록</a>
                     </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <li class="nav-item" sec:authorize="hasAnyAuthority('ROLE_ADMIN')">
                         <a class="nav-link active" aria-current="page" href="/admin/items">상품관리</a>
                     </li>
-                    <li class="nav-item" sec:authorize="isAuthenticated()">
+                    <li class="nav-item" sec:authorize="isAuthenticated()"><!--isAuthenticated() 로그인을 해야만 목록 생김 -->
                         <a class="nav-link active" aria-current="page" href="/cart">장바구니</a>
                     </li    >
                     <li class="nav-item" sec:authorize="isAuthenticated()">
@@ -34,8 +34,6 @@
 <!--                    <li class="nav-item">-->
 <!--                        <a class="nav-link active" aria-current="page" href="/member/new">사용자 등록</a>-->
 <!--                    </li>-->
-
-
 <!--                    <li class="nav-item">-->
 <!--                        <a class="nav-link active" aria-current="page" href="/thymeleaf/ex1">ex01</a>-->
 <!--                    </li>-->
