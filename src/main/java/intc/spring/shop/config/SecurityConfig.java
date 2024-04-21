@@ -37,8 +37,8 @@ public class SecurityConfig {
                         .permitAll() );// 모든사람들이 쓸수 있다
 
 
-        http.logout(Customizer.withDefaults());
-
+        http.logout(Customizer.withDefaults()); //기본적인 로그아웃
+        
 
         http
                 .authorizeHttpRequests(request-> request

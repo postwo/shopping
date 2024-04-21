@@ -3,9 +3,13 @@ package intc.spring.shop.controller;
 import intc.spring.shop.dto.MemberFormDto;
 import intc.spring.shop.entity.Member;
 import intc.spring.shop.service.MemberSerivce;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -60,6 +64,12 @@ public class MemberController {
         return "member/memberLoginForm";
     }
 
+    //로그아웃
+    @GetMapping("/member/logout")
+    public String logoutForm(HttpServletRequest request, HttpServletResponse response){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();//인증된정보를 들고온다
+        return "redirect:/";
+    }
 
 
 }
