@@ -43,9 +43,14 @@ public class SecurityConfig {
         http
                 .authorizeHttpRequests(request-> request
                         .requestMatchers("/css/**").permitAll() // 이렇게 해서 권한을 열어줘야  css가 먹는다
-                        .requestMatchers("/","/member/**").permitAll() //접근하게 만들거
+                        .requestMatchers("/","/member/**, /error").permitAll() //접근하게 만들거 ,/error 999에러 방지
                         .requestMatchers("/admin/**").hasRole("ADMIN") //admin 권한이 있으면 접속 가능 //컨트롤러에 url이 없어서 404뜨니까 후에 컨트롤 만드록 다시 403뜨는지 확인하기
                         .anyRequest().authenticated());//인증을 걸거다 //위에 권한을 열어준거 빼고는 전부다 로그인 페이지로 이동
+
+
+        http.exceptionHandling(exception-> exception //exception이 발생하면 처리
+                //.accessDeniedPage("/accessDenid"); //접근 거부 페이지
+                .authenticationEntryPoint(new CustomAuthenticationEntryPoint())); //CustomAuthenticationEntryPoint() 이클래스를 만드럭다
 
         return http.build();
 
