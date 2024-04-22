@@ -3,6 +3,7 @@ package intc.spring.shop.entity;
 
 import intc.spring.shop.common.entity.BaseEntity;
 import intc.spring.shop.constant.ItemSellStatus;
+import intc.spring.shop.dto.ItemFormDto;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
@@ -37,6 +38,15 @@ public class Item extends BaseEntity {
 
     @Enumerated(EnumType.STRING) // eumtype은 이렇게 사용한다
     private ItemSellStatus itemSellStatus; //상품 판매 상태 (enum에서 상수)
+
+    //dto를 entity로 변경
+    public void updateItem(ItemFormDto itemFormDto) {
+        this.itemNm = itemFormDto.getItemNm();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 
 
 //    private LocalDateTime regTime; // 상품에 대한 등록시간

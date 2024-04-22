@@ -5,6 +5,7 @@ import intc.spring.shop.entity.Item;
 import intc.spring.shop.entity.ItemImg;
 import intc.spring.shop.repository.ItemImgREpository;
 import intc.spring.shop.repository.ItemRepository;
+import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,8 +23,17 @@ public class ItemService {
     private final ItemImgService itemImgService;
     private final ItemImgREpository itemImgREpository;
 
-    public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList){
-        Item item = itemRepository.findById();
+    //수정
+    public Long updateItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws IOException {
+        Item item = itemRepository.findById(itemFormDto.getId()).orElseThrow(EntityNotFoundException::new);
+       //변경 감지(dirty checking) = 자동으로 변경으로 감지해서 저장한다
+        item.updateItem(itemFormDto);
+        List<Long> itemImgIds = itemFormDto.getItemImgIds();
+
+        for (int i=0; i<itemImgFileList.size(); i++){
+            itemImgService.updateItemImg(itemImgIds.get(i),itemImgFileList.get(i));
+        }
+        return item.getId();
     }
 
     public Long saveItem(ItemFormDto itemFormDto, List<MultipartFile> itemImgFileList) throws IOException { //사진을 한꺼번에 다섯개를 받아올꺼기때문에 list로 받는다
@@ -46,6 +56,9 @@ public class ItemService {
         return item.getId();
     }
 
-
+//수정
+//    public ItemFormDto getItemDetail(Long itemId) {
+//        List<ItemImg> itemImgList = itemImgREpository.findAll();
+//    }
 }
 
