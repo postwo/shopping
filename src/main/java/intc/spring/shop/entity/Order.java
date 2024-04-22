@@ -1,5 +1,6 @@
 package intc.spring.shop.entity;
 
+import intc.spring.shop.common.entity.BaseEntity;
 import intc.spring.shop.constant.OrderStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Order {
+public class Order extends BaseEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="order_id")
@@ -51,6 +52,8 @@ public class Order {
     관계를 표현하는데 사용됩니다. ArrayList로 초기화된 이유는 해당 필드가 여러 개의 OrderItem 엔티티를 담을 수
     있도록 하기 위함*/
     //cascade = CascadeType.ALL 이걸사용하면 없애면 없애고 수정하면 수정하고
-    @OneToMany(fetch = FetchType.LAZY,mappedBy = "order",cascade = CascadeType.ALL) //기본전략이 Lazy이다
+    //orphanRemoval = true)고아 객체가 되면 제거
+    @OneToMany(fetch = FetchType.LAZY,mappedBy = "order"
+            ,cascade = CascadeType.ALL,orphanRemoval = true) //기본전략이 Lazy이다
     private List<OrderItem> orderItems =new ArrayList<>();
 }

@@ -1,6 +1,7 @@
 package intc.spring.shop.entity;
 
 
+import intc.spring.shop.common.entity.BaseEntity;
 import intc.spring.shop.constant.ItemSellStatus;
 import jakarta.persistence.*;
 import lombok.*;
@@ -16,7 +17,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder // 인자가 5개인데 2개만 만들고 싶을때 사용
-public class Item {
+public class Item extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +39,8 @@ public class Item {
     private ItemSellStatus itemSellStatus; //상품 판매 상태 (enum에서 상수)
 
 
-    private LocalDateTime regTime; // 상품에 대한 등록시간
-
-
-    private LocalDateTime updateTime;  // 상품 수정시간
+//    private LocalDateTime regTime; // 상품에 대한 등록시간
+//
+//
+//    private LocalDateTime updateTime;  // 상품 수정시간
 }

@@ -1,9 +1,11 @@
 package intc.spring.shop.service;
 
+import intc.spring.shop.dto.MemberFormDto;
 import intc.spring.shop.entity.Member;
 import intc.spring.shop.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.modelmapper.ModelMapper;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -19,7 +21,9 @@ public class MemberSerivce implements UserDetailsService {
 
     private final MemberRepository memberRepository;
 
-    public Member saveMember(Member member){ 
+
+
+    public Member saveMember(Member member){
         validateDuplicationMember(member); //중복되었는지 확인
         return memberRepository.save(member); //이것도 타입이 member여서 이렇게 바로 반환할수 있다
     }

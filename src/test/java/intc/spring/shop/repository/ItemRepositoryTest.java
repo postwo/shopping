@@ -49,8 +49,8 @@ class ItemRepositoryTest {
                 .stockNumber(100)
                 .itemDetail("테스트 상품에 대한 상세설명")
                 .itemSellStatus(ItemSellStatus.SELL) //판매상태
-                .regTime(LocalDateTime.now())
-                .updateTime(LocalDateTime.now())
+                //.regTime(LocalDateTime.now())
+                //.updateTime(LocalDateTime.now())
                 .build(); //builder 패턴
 
         System.out.println("==================item :"+ item);
@@ -68,8 +68,8 @@ class ItemRepositoryTest {
                    .stockNumber(100 +i)
                    .itemDetail("테스트 상품에 대한 상세설명"+i)
                    .itemSellStatus(ItemSellStatus.SELL) //판매상태
-                   .regTime(LocalDateTime.now())
-                   .updateTime(LocalDateTime.now())
+                   //regTime(LocalDateTime.now())
+                   //.updateTime(LocalDateTime.now())
                    .build();
 
            itemRepository.save(item);
@@ -170,8 +170,8 @@ class ItemRepositoryTest {
                     .stockNumber(100 +i)
                     .itemDetail("테스트 상품에 대한 상세설명"+i)
                     .itemSellStatus(ItemSellStatus.SELL) //판매상태
-                    .regTime(LocalDateTime.now())
-                    .updateTime(LocalDateTime.now())
+                   // .regTime(LocalDateTime.now())
+                    //.updateTime(LocalDateTime.now())
                     .build();
 
             itemRepository.save(item);
@@ -184,8 +184,8 @@ class ItemRepositoryTest {
                     .stockNumber(100 +i)
                     .itemDetail("테스트 상품에 대한 상세설명"+i)
                     .itemSellStatus(ItemSellStatus.SOLD_OUT) //판매상태
-                    .regTime(LocalDateTime.now())
-                    .updateTime(LocalDateTime.now())
+                    //.regTime(LocalDateTime.now())
+                    //.updateTime(LocalDateTime.now())
                     .build();
 
             itemRepository.save(item);

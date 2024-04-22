@@ -1,5 +1,6 @@
 package intc.spring.shop.entity;
 
+import intc.spring.shop.common.entity.BaseEntity;
 import intc.spring.shop.constant.Role;
 import intc.spring.shop.dto.MemberFormDto;
 import jakarta.persistence.*;
@@ -14,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Member {
+public class Member extends BaseEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -1,9 +1,10 @@
 package intc.spring.shop.entity;
 
+import intc.spring.shop.common.entity.BaseEntity;
 import jakarta.persistence.*;
 
 @Entity
-public class User {
+public class User  {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
